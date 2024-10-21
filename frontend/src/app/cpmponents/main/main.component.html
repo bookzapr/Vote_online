@@ -1,0 +1,34 @@
+
+<div class="container">
+  <div class="row" style="margin-top: 100px;">
+    <div class="col-4">
+      
+    </div>
+    <div class="col-md-8">
+      <div class="alert alert-success mt-5" role="alert">
+        รายการเปิดโหวต/เลือกตั้ง Online
+      </div>
+    <div class="row row-cols-2">
+    <div class="card w-50 mb-2" *ngFor="let result of results2">
+        <div class="card-body">
+          <h5 class="card-title">{{result.title}}</h5>
+          <h5 class="card-title">เปิดถึงวันที่ {{result.open | date: 'dd/MM/yyyy'}} -{{result.end | date: 'dd/MM/yyyy'}} </h5>
+    
+          <p class="card-text">สถานะ :
+            <span *ngIf="result.status === '1'">
+            <button type="button" class="btn btn-success">OPEN</button>
+          </span>
+          <span *ngIf="result.status === '0'">
+            <button type="button" class="btn btn-danger">CLOSE</button>
+          </span>
+          </p>
+          <a routerLink="/detail/{{ result.id }}/{{massage2}}" class="btn btn-primary">DETAIL</a>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="col-sm-4">
+     
+    </div>
+  </div>
+</div>

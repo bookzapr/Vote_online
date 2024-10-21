@@ -1,0 +1,129 @@
+ <div class="container">
+  <div class="row" style="margin-top: 60px;">
+    <div class="col-md-4">     
+    </div>
+    <div class="col-md-8">
+      <section class="h-100 h-custom">
+        <div class="container py-5 h-100">
+          <div class="row d-flex ml-5">
+            <div class="col-lg-8 col-xl-6">
+              <div class="card rounded-3">
+                <div class="card-body p-4 p-md-5">
+                  <div class="text-center">
+                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">แบบฟอร์มเพิ่มผู้สมัคร</h3>
+                  </div>
+                  <div class="text-center">
+                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">หัวข้อการสมัคร:
+                      ...</h3>
+                  </div>
+
+                  <form class="px-md-2" [formGroup]="addcandidatesForm">
+                    <div>
+                      <div class="d-flex justify-content-center mb-4">
+                        <img
+                          [src]="this.addcandidatesForm.value.image || 'https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg'"
+                          class="rounded-circle" alt="example placeholder"
+                          style="width: 200px;" />
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center">
+                          <div class="form-group-md">
+                            <!--<label class="form-label text-white m-1" for="customFile2">Choose file</label>-->
+                            <input [value]="this.addcandidatesForm.value.image"
+                              type="file" id="file" class="form-control-file"
+                              formControlName="file"
+                              (change)="onChangeImg($event)" />
+                            <div
+                              *ngIf="file?.invalid && (file?.dirty || file?.touched)"
+                              class="alert alert-danger mt-1">
+                              <div *ngIf="file?.errors?.['required']">
+                                image invalid
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-outline col-md-6 mb-4 mt-3">
+                        <input type="text" class="form-control" id="Firstname"
+                          placeholder="ชื่อ" formControlName="firstname" />
+                        <div
+                          *ngIf="firstname?.invalid && (firstname?.dirty || firstname?.touched)"
+                          class="alert alert-danger mt-1">
+                          <div *ngIf="firstname?.errors?.['required']">
+                            โปรดระบุชื่อ
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-outline col-md-6 mb-4 mt-3">
+                        <input type="text" class="form-control" id="lastname"
+                          placeholder="นามสกุล" formControlName="lastname" />
+                        <div
+                          *ngIf="lastname?.invalid && (lastname?.dirty || lastname?.touched)"
+                          class="alert alert-danger mt-1">
+                          <div *ngIf="lastname?.errors?.['required']">
+                            โปรดระบุนามสกุล
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+
+                        <div class="form-outline datepicker">
+                          <input type="number" class="form-control" id="age"
+                            placeholder="อายุ" formControlName="age" />
+                          <div
+                            *ngIf="age?.invalid && (age?.dirty || age?.touched)"
+                            class="alert alert-danger mt-1">
+                            <div *ngIf="age?.errors?.['required']">
+                              โปรดระบุอายุ
+                            </div>
+                            <div *ngIf="age?.errors?.['min']">
+                              อายุต้องไม่ติดลบ
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <select id="gen" formControlName='gender'>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
+                        </select>
+
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <input type="text" class="form-control" id="intro"
+                        placeholder="แนะนำตัว/คติประจำตัว"
+                        formControlName='intro'>
+                      <div
+                        *ngIf="intro?.invalid && (intro?.dirty || intro?.touched)"
+                        class="alert alert-danger mt-1">
+                        <div *ngIf="intro?.errors?.['required']">
+                          โปรดระบุคำแนะนำตัว/คติประจำตัว
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-success btn-lg mb-1"
+                        (click)="addCandidate()">เพิ่มผู้สมัคร</button>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="col-md-4">
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="alert alert-success" role="alert">
+    รายการเปิดโหวต/เลือกตั้ง Online
+  </div>
+<div>
+    <h2>{{results2.title}}</h2>
+    <h5>{{results2.describe}} </h5>
+    <h5 class="text-primary">เปิดระบบ {{results2.open | date: 'dd/MM/yyyy'  }} ถึง {{results2.end | date: 'dd/MM/yyyy' }}</h5>
+    <h5>สถานะ : <span *ngIf="results2.status === '1'">
+        <button type="button" class="btn btn-success">OPEN</button>
+      </span>
+      <span *ngIf="results2.status === '0'">
+        <button type="button" class="btn btn-danger">CLOSE</button>
+      </span></h5>
+</div>
+
+
+<h1 class="mt-3 text-center" >รายชื่อผู้สมัคร 
+  <span *ngIf="results2.status === '1' && checkUser === undefined">
+    <a routerLink="/vote/{{ results2.id }}/{{massage2}}" class="btn btn-primary">ลงคะแนนเสียง</a>
+  </span>
+  
+  <span *ngIf="results2.status === '0' ">
+    <a routerLink="#" class="btn btn-danger">ไม่สามารถลงคะแนนได้ (CLOSE)</a>
+  </span>
+  
+  <span *ngIf="checkUser !== undefined">
+  
+    <a routerLink="#" class="btn btn-danger">ไม่สามารถโหวตซ้ำได้</a>
+  </span>
+</h1>
+
+
+<div class="text-center">
+    <a routerLink="/report/{{ results2.id }}" class="btn btn-success mt-3">REPORT</a>
+</div>
+<h5 class="text-center mt-3">แนะนำข้อมูลผู้สมัครโหวต/เลือกตั้ง</h5>
+
+<div class="row">
+    <div class="card ml-2" *ngFor="let result of test" style="width: 18rem;">
+      <img [src]="result[0].image">
+    <div class="card-body">
+        <h4 class="text-center">{{result[0].firstname + ' ' +result[0].lastname}}</h4>
+        <p class="card-text text-center">หมายเลข : {{result[0].id}}</p>
+        <p class="card-text text-center">"{{result[0].describe}}"</p>
+    </div>
+</div>
+
+
+</div>

@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row" style="margin-top: 80px;">
+    <div class="col-4">
+
+    </div>
+    <div class="col-md-8">
+
+      <h2 class="mt-5">{{results2.title}}</h2>
+      <h5>{{results2.intro}} </h5>
+      <h5 class="text-primary">เปิดระบบ {{results2.open | date: 'dd/MM/yyyy' }}
+        ถึง {{results2.end | date: 'dd/MM/yyyy' }}</h5>
+      <h5>สถานะ : <span *ngIf="results2.status === '1'">
+          <button type="button" class="btn btn-success">OPEN</button>
+        </span>
+        <span *ngIf="results2.status === '0'">
+          <button type="button" class="btn btn-danger">CLOSE</button>
+        </span></h5>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>หมายเลข</th>
+            <th>IMG</th>
+            <th width="700">ชื่อ</th>
+            <th>คะแนนรวม</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let result of test">
+          <tr>
+            <td>{{ result.resultnew[0][0].id }}</td>
+            <td><img [src]="result.resultnew[0][0].image"></td>
+
+            <td>
+              <div>ชื่อ-สกุล : {{ result.resultnew[0][0].firstname + ' ' +
+                result.resultnew[0][0].lastname }}</div>
+              <div>แนะนำตัว : "{{ result.resultnew[0][0].intro }}"</div>
+            </td>
+            <td>
+              <div>{{ result.scoreCount }}</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+  </div>
+</div>

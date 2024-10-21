@@ -1,0 +1,46 @@
+<div class="row" style="margin-top: 60px;">
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+            <div class="col">
+                <h2>{{results2.title}}</h2>
+                <h5>{{results2.describe}} :</h5>
+                <h5 class="text-primary">เปิดระบบ {{results2.open | date: 'dd/MM/yyyy'  }} ถึง {{results2.end | date: 'dd/MM/yyyy' }}</h5>
+                <h5>สถานะ : <span *ngIf="results2.status === '1'">
+                    <button type="button" class="btn btn-success">OPEN</button>
+                  </span>
+                  <span *ngIf="results2.status === '0'">
+                    <button type="button" class="btn btn-danger">CLOSE</button>
+                  </span></h5>
+            </div>
+            <div class="col">
+                <h5 class="card-header">ผู้สมัคร <a routerLink="/addcandidates/{{ results2.id }}" class="btn btn-sm btn-info text-white mb-2 ml-2"><i class='bx bx-plus'></i>ADD</a></h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>หมายเลข</th>
+                            <th>IMG</th>
+                            <th>ชื่อ</th>
+                            <th>แนะนำตัวเบื้องต้น</th>
+                            <th>แก้ไข</th>
+                            <th>ลบ</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <!-- forEach from sql-->
+                        <tr *ngFor="let item of results; index as i">
+                            <td>{{item[0].id}}</td>
+                            <td><img [src]="item[0].image" style="height:150px;"></td>
+                            <td>{{item[0].firstname + ' ' +item[0].lastname}}</td>
+                            <td>{{item[0].intro}}</td>
+                            <td><a routerLink="/editcandidates/{{item[0]._id }}/{{event_id}}" class="btn btn-sm btn-warning text-white">Edit</a></td>
+                            <td><button class="btn btn-sm btn-danger text-white" (click)="deleteCandidate(item[0]._id)">Delete</button></td>
+                        </tr>
+                      
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        <div class="product-device shadow-sm d-none d-md-block"></div>
+        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+      </div>    
+  </div>

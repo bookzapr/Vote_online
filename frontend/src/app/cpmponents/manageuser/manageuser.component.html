@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row" style="margin-top: 100px;">
+    <div class="col-4">
+
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+        <h5 class="card-header">รายการสมาชิก <a href="adduser"
+            class="btn btn-sm btn-info text-white ml-2"><i class='bx bx-plus'></i>ADD</a></h5>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">No.</th>
+                  <!-- <th scope="col">รูป</th> -->
+                  <th scope="col">ข้อมูลส่วนตัว</th>
+                  <th scope="col"></th>
+                  <th scope="col">แก้ไข</th>
+                  <th scope="col">ลบ</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let result of results">
+                <tr>
+                  <th>{{ result.id }}</th>
+                  <td><div>ชื่อ - นามสกุล: {{ result.firstname + ' '
+                      +result.lastname }} </div>
+                    <div>เบอร์โทรศัพท์ : {{ result.phone }}</div></td>
+                  <td><a routerLink="/resetpassword/{{ result._id }}"
+                      class="btn btn-sm btn-secondary">resetpwd</a></td>
+                  <td><a routerLink="/edituser/{{ result._id }}"
+                      class="btn btn-sm btn-warning text-white">Edit</a></td>
+                  <td><button class="btn btn-sm btn-danger text-white"
+                      (click)="deleteUser(result._id)">Delete</button></td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm">
+
+    </div>
+  </div>
+</div>

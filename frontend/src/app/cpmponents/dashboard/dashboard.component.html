@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row" style="margin-top: 80px;">    
+    <div class="col-md" style="margin-left: 250px;">
+      <h1 class="h2 mt-5">Dashboard</h1>
+      <div class="row my-4">
+        <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
+          <div class="card">
+            <h5 class="card-header">EVENT</h5>
+            <div class="card-body">
+              <h5 class="card-title">จำนวนทั้งหมด : {{countEvent.count}}</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+          <div class="card">
+            <h5 class="card-header">MEMBERS</h5>
+            <div class="card-body">
+              <h5 class="card-title">มีทั้งหมด : {{countMember.count}} </h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+          <div class="card">
+            <h5 class="card-header">CANDIDATES</h5>
+            <div class="card-body">
+              <h5 class="card-title">มีทั้งหมด : {{countCandidate.count}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-xl-8 mb-4 mb-lg-0">
+          <div class="card">
+            <h5 class="card-header">รายงาน || ผลโหวต</h5>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">No.</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Open</th>
+                      <th scope="col">end</th>
+                      <th scope="col">Create at</th>
+                      <th scope="col">status</th>
+                      <th scope="col">Report</th>
+
+                    </tr>
+                  </thead>
+
+                  <tbody *ngFor="let result of results">
+                    <tr>
+                      <td><b>{{result.id}}</b></td>
+                      <td>{{result.title}}</td>
+                      <td>{{ result.open | date: 'dd/MM/yyyy' }}</td>
+                      <td>{{ result.end | date: 'dd/MM/yyyy' }}</td>
+                      <td>{{result.createdAt}}</td>
+
+                      <td>
+                        <span *ngIf="result.status === '1'">
+                          <button type="button" class="btn btn-success">OPEN</button>
+                        </span>
+                        <span *ngIf="result.status === '0'">
+                          <button type="button" class="btn btn-danger">CLOSE</button>
+                        </span>
+                      </td>
+
+                      <td><a routerLink="/ReportforAdmin/{{ result.id }}"
+                          class="btn btn-sm btn-primary">View</a></td>
+                    </tr>
+
+                  </tbody>
+
+                </table>
+              </div>
+              <a href="adminReport" class="btn btn-block btn-light">View all</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>   
+  </div>
+</div>

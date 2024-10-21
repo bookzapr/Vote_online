@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <span class="navbar-brand ml-5" style="margin-left: 30px; margin-top: 5px; font-size: 30px;">Vote Online</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto" >
+      <li class="nav-item active">
+        <a class="nav-link text-white" style="margin-left: 10px; margin-top: 5px; font-size: 20px;" routerLink="main" *ngIf="authenticated">กิจกรรม</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" style="margin-left: 10px; margin-top: 5px; font-size: 20px;" routerLink="login" *ngIf="!authenticated">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" style="margin-left: 10px; margin-top: 5px; font-size: 20px;" routerLink="register" *ngIf="!authenticated" >Register</a>
+      </li>      
+      <li class="nav-item" *ngIf="authenticated && role === 'admin'">
+        <a class="nav-link text-white" routerLink="dashboard" style="margin-left: 10px; margin-top: 5px; font-size: 20px;">
+            <i class='bx bx-home'></i><span class="fs-6 d-none d-sm-inline" > หน้าหลัก</span>
+        </a>
+    </li>
+    <li class="nav-item" *ngIf="authenticated && role === 'admin'" >
+        <a class="nav-link text-white" routerLink="manageuser" style="margin-left: 10px; margin-top: 5px; font-size: 20px;">
+            <i class='bx bx-user'></i><span class="fs-6 d-none d-sm-inline"> จัดการสมาชิก</span>
+        </a>
+    </li>
+    <li class="nav-item" *ngIf="authenticated && role === 'admin'" >
+        <a class="nav-link text-white" routerLink="manageEvent" style="margin-left: 10px; margin-top: 5px; font-size: 20px;">
+            <i class='bx bx-edit'></i><span class="fs-6 d-none d-sm-inline" style="margin-left: 10px; margin-top: 5px; font-size: 20px;"> จัดการ Event</span>
+        </a>
+    </li>
+    <li class="nav-item" *ngIf="authenticated && role === 'admin'">
+        <a class="nav-link text-white" routerLink="adminReport" style="margin-left: 10px; margin-top: 5px; font-size: 20px;">
+            <i class='bx bxs-report'></i><span class="fs-6 d-none d-sm-inline"> Report</span>
+        </a>
+    </li>
+    <li class="nav-item">
+      
+    </li>
+    </ul>
+    <ul>
+      <li class="nav-item dropdown" >
+        <a class="nav-link dropdown-toggle"  data-toggle="dropdown"
+          aria-expanded="false" style="margin-left: 10px; margin-top: 15px; ">
+          <label style="font-size: 20px; margin-top: 10px;  width: 60px; margin-right: 20px; color:gray" [(ngModel)]="massage">{{massage}}</label>
+          <img routerLink="userprofile/{{uid}}" class="rounded-circle" alt="example placeholder"
+          style="width: 60px; margin-right: 20px; margin-left: 50px;" [src]="resule || 'https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg' ">
+          
+        </a>
+        <div class="nav-item">
+          <a class="nav-link text-white" style="margin-left: 10px; margin-top: 5px; font-size: 20px;" routerLink="login"  *ngIf="authenticated" (click)="logout()"><i class='bx bx-log-out'></i><span class="fs-6 d-none d-sm-inline"> ออกจากระบบ</span></a>        
+          <!--<a class="dropdown-item" *ngIf="authenticated">Manage Event</a>
+            <a class="dropdown-item" style="margin-left: 10px; margin-top: 20px; margin-right: 40px;" *ngIf="authenticated">Manage User</a>
+          <a class="dropdown-item" *ngIf="authenticated">Admin Report</a>-->
+        </div>
+      </li>
+    </ul> 
+  </div>
+</nav>

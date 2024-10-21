@@ -1,0 +1,36 @@
+<div class="row mt-5">
+    <div class="col-12 col-xl-8 mb-4 mb-lg-0" style="margin-top: 60px;">
+        <div class="card">
+            <h5 class="card-header">รายการ Event <a href="addevent" class="btn btn-sm btn-info text-white ml-2"><i class='bx bx-plus'></i>ADD</a></h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">open</th>
+                            <th scope="col">end</th>
+                            <th scope="col" >ผู้สมัคร</th>
+                            <th scope="col">แก้ไข</th>
+                            <th scope="col">ลบ</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let result of results">
+                          <tr>
+                            <td><b>{{ result.id }}</b></td>
+                            <td>{{ result.title }}</td>
+                            <td>{{ result.open | date: 'dd/MM/yyyy' }}</td>
+                            <td>{{ result.end | date: 'dd/MM/yyyy' }}</td>
+                            <td><a routerLink="/event/{{ result.id }}" class="btn btn-sm btn-info text-white"><i class='bx bx-plus'></i> ผู้สมัคร</a></td>
+                            <td><a routerLink="/editevent/{{ result._id }}" class="btn btn-sm btn-warning text-white">Edit</a></td>
+                            <td><button class="btn btn-sm btn-danger text-white" (click)="deleteEvent(result._id)">Delete</button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

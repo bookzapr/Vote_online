@@ -1,0 +1,152 @@
+<section class="h-100 h-custom">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">แบบฟอร์มเพิ่มสมาชิก</h3>
+
+            <form class="px-md-2" [formGroup]="adduserForm">
+              <div>
+                <div class="d-flex justify-content-center mb-4">
+                  <img
+                    [src]="this.adduserForm.value.image || 'https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg'"
+                    class="rounded-circle" alt="example placeholder"
+                    style="width: 200px;" />
+                </div>
+                <div class="d-flex justify-content-center">
+                  <div class="form-group-md">
+                    <!--<label class="form-label text-white m-1" for="customFile2">Choose file</label>-->
+                    <input type="file" id="file" class="form-control-file"
+                      formControlName="file" (change)="onChangeImg($event)" />
+                    <div *ngIf="file?.invalid && (file?.dirty || file?.touched)"
+                      class="alert alert-danger mt-1">
+                      <div *ngIf="file?.errors?.['required']">
+                        image invalid
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6 mb-4 mt-3">
+                  <input type="text" class="form-control" id="firstname"
+                    placeholder="Firstname" formControlName='firstname' />
+                  <div
+                    *ngIf="firstname?.invalid && (firstname?.dirty || firstname?.touched)"
+                    class="alert alert-danger mt-1">
+                    <div *ngIf="firstname?.errors?.['required']">
+                      โปรดระบุชื่อ
+                    </div>
+                  </div>
+                </div>
+                <div class="form-outline col-md-6 mb-4 mt-3">
+                  <input type="text" class="form-control" id="lastname"
+                    placeholder="Lastname" formControlName="lastname" />
+                  <div
+                    *ngIf="lastname?.invalid && (lastname?.dirty || lastname?.touched)"
+                    class="alert alert-danger mt-1">
+                    <div *ngIf="lastname?.errors?.['required']">
+                      โปรดระบุนามสกุล
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline datepicker">
+                    <input type="number" class="form-control" id="age"
+                      formControlName="age" placeholder="อายุ" />
+                    <div
+                      *ngIf="age?.invalid && (age?.dirty || age?.touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="age?.errors?.['required']">
+                        age is required
+                      </div>
+                      <div *ngIf="age?.errors?.['min']">
+                        อายุต้องไม่ติดลบ
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-group">
+                    <select class="form-control" formControlName="gender">
+                      <option value></option>
+                      <option *ngFor="let item of gender1" [value]="item">{{item}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-4 pb-2 pb-md-0 mb-2 md-5">
+                <div class="col-md-6">
+                  <div class="form-outline">
+                    <input type="text" class="form-control" id="username"
+                      placeholder="username" formControlName="username" />
+                    <div
+                      *ngIf="username?.invalid && (username?.dirty || username?.touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="username?.errors?.['required']">
+                        โปรดกรอกข้อมูล
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-outline">
+                  <input type="text" class="form-control" id="password"
+                    placeholder="password" formControlName="password" />
+                  <button type="button"
+                    class="btn btn-outline-danger btn-sm mt-1"
+                    (click)="onClickToGoodPassword()"><i class='bx bx-error'></i></button>
+                </div>
+                <div class="alert alert-danger mt-1" *ngIf="CommuData">
+                  <app-goodpassword [CommuData]="CommuData"></app-goodpassword>
+                </div>
+                <div
+                  *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+                  class="alert alert-danger mt-1">
+                  <div *ngIf="password?.errors?.['required']">
+                    โปรดระบุรหัสผ่าน
+                  </div>
+                  <div
+                    *ngIf="password?.errors?.['minLength'] || password?.errors?.['pattern']">
+                    รหัสผ่านไม่ถูกต้อง
+                  </div>
+                </div>
+              </div>
+              <div class="form-outline mb-4">
+                <input type="text" class="form-control" id="phone"
+                  placeholder="phonenumber" formControlName="phone" />
+                <div *ngIf="phone?.invalid && (phone?.dirty ||phone?.touched)"
+                  class="alert alert-danger mt-1">
+                  <div *ngIf="phone?.errors?.['required']">
+                    โปรดระบุเบอร์โทรศัพท์
+                  </div>
+                </div>
+              </div>
+              <div class="form-outline col-md-6 mb-4 mt-3">                
+                <div class="form-group">
+                  <select class="form-control" formControlName="role" >
+                    <option value ></option>
+                    <option *ngFor="let item of role1" [value]="item" >{{item}}</option>                      
+                  </select>                                        
+                </div>
+            </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-success btn-lg mb-1"
+                  (click)="CreateUser()">เพิ่มข้อมูลสมาชิก</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

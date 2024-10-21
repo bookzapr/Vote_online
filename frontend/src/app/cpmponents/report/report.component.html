@@ -1,0 +1,45 @@
+ <div class="container">
+  <div class="row" style="margin-top: 100px;">
+    <div class="col-4">
+
+    </div>
+    <div class="col-md-8">
+      <div class="alert alert-danger" role="alert">
+        ผลโหวต/เลือกตั้ง Online
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>หมายเลข</th>
+            <th width="200">IMG</th>
+            <th width="700">ชื่อ</th>
+            <th>คะแนนรวม</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let result of test">
+            <td>{{ result.resultnew[0][0].id }}</td>
+            <td> <img [src]="result.resultnew[0][0].image" class="card-img-top"
+                height="150" alt="..."></td>
+            <td>
+              <div>ชื่อ-สกุล : {{ result.resultnew[0][0].firstname + ' ' +
+                result.resultnew[0][0].lastname }}</div>
+              <div>แนะนำตัว : "{{ result.resultnew[0][0].intro }}"</div>
+            </td>
+            <td>
+              <div>{{ result.scoreCount }}</div>
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+      <b><h4 style="color:red;">*หมายเหตุ :
+          รายชื่อใดที่ไม่ปรากฎในระบบคือรายชื่อที่ได้คะแนนการโหวตเป็น 0 คะแนนรวม</h4></b>
+    </div>
+    <div class="col-sm-4">
+
+    </div>
+  </div>
+</div>

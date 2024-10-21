@@ -1,0 +1,25 @@
+<div class="alert alert-success" role="alert" style="margin-top: 80px;">
+    รายการเปิดโหวต/เลือกตั้ง Online
+  </div>
+  <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>หมายเลข</th>
+            <th width="200">IMG</th>
+            <th>ชื่อ</th>
+            <th>แนะนำตัวเบื้องต้น</th>
+            <th>เลือก</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let result of test">
+            <td>{{result[0].id}}</td>
+            <td>Image</td>
+            <td>{{result[0].firstname + ' ' +result[0].lastname}}</td>
+            <td>"{{result[0].describe}}"</td>
+            <td><input type="radio" id="id" [(ngModel)]="eventJcandidate_id" value="{{result[0].id}}"></td>
+        </tr>
+    </tbody>
+  </table>
+
+<h1 class="mt-3 text-right"><button class="btn btn-primary" (click)="addScore()">บันทึกการโหวต</button></h1>
